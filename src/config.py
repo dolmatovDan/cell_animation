@@ -1,0 +1,20 @@
+# Graphics settings
+WIDTH, HEIGHT = 800, 600
+BACKGROUND = (240, 240, 245)
+WHITE = (255, 255, 255)
+BLUE = (0, 100, 255)
+RED = (255, 50, 50)
+GREEN = (50, 200, 50)
+
+# Cell parameters
+CELL_RADIUS = 25
+INITIAL_POS = (WIDTH // 2, HEIGHT // 2)
+BASE_SPEED = 2.5
+SPLIT_ANGLE = 90
+MAX_GENERATIONS = 4
+DIVISION_DELAY = 1000  # ms
+SPREAD_DISTANCE = 80   # pixels
+
+# Recording settings
+RECORD_FRAMES = True
+FRAME_OUTPUT_DIR = "../frames/"
