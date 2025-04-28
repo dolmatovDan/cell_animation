@@ -5,15 +5,35 @@ from config import *
 from cell import Cell
 from renderer import draw_cell, draw_ui
 from recorder import FrameRecorder
+import numpy as np
+from cell_data import CellData
 
 
 def main():
+    print("Введите 3 координаты a через запятую: ", end="")
+    a = np.array(list(map(float, input().split(","))))
+    print("Введите 3 координаты d через запятую: ", end="")
+    d = np.array(list(map(float, input().split(","))))
+    print("Введите тета1: ", end="")
+    teta1 = float(input())
+    print("Введите тета2: ", end="")
+    teta2 = float(input())
+    print("Введите гамма: ", end="")
+    gamma = float(input())
+
+    # a = np.array([0, 1, 0])
+    # d = np.array([1.5, 1, 0])
+    # teta1 = 1.
+    # teta2 = 1.5
+    # gamma = 1
+
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Automatic Cell Division")
 
     clock = pygame.time.Clock()
-    cells = [Cell(INITIAL_POS[0], INITIAL_POS[1], CELL_RADIUS)]
+    cells = [Cell(INITIAL_POS[0], INITIAL_POS[1], CELL_RADIUS,
+                  1, CellData(a, d, teta1, teta2, gamma))]
     recorder = FrameRecorder(enabled=RECORD_FRAMES,
                              output_dir=FRAME_OUTPUT_DIR)
 
@@ -31,6 +51,7 @@ def main():
         for cell in cells:
             cell.update()
             if cell.should_divide(current_time):
+                print()
                 new_cells.extend(cell.divide())
         if new_cells:
             cells = new_cells

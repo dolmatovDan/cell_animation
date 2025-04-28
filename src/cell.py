@@ -1,10 +1,11 @@
 import pygame
 import math
 from config import *
+from cell_data import CellData
 
 
 class Cell:
-    def __init__(self, x: float, y: float, radius: int, generation: int = 1):
+    def __init__(self, x: float, y: float, radius: int, generation: int, cell_data: CellData):
         self.x = x
         self.y = y
         self.radius = radius
@@ -16,6 +17,8 @@ class Cell:
         self.created_time = pygame.time.get_ticks()
         self.has_divided = False
         self.distance_moved = 0
+
+        self.cell_data = cell_data
 
     def update(self):
         if self.moving:
@@ -34,25 +37,22 @@ class Cell:
     def divide(self) -> list:
         if self.has_divided or self.generation >= MAX_GENERATIONS:
             return []
-
-        angle_rad = math.radians(SPLIT_ANGLE / 2)
         new_generation = self.generation + 1
         speed = BASE_SPEED * (0.8 ** self.generation)
 
-        dx1 = speed * math.cos(angle_rad)
-        dy1 = -speed * math.sin(angle_rad)
-        dx2 = speed * math.cos(angle_rad)
-        dy2 = speed * math.sin(angle_rad)
+        cd1, cd2 = self.cell_data.get_childs()
 
-        cell1 = Cell(self.x, self.y, self.radius, new_generation)
-        cell1.dx = dx1
-        cell1.dy = dy1
+        cell1 = Cell(self.x, self.y, self.radius, new_generation, cd1)
+        cell1.dx, cell1.dy = cell1.cell_data.calc_dxy()
         cell1.moving = True
+        cell1.dx *= speed
+        cell1.dy *= speed
 
-        cell2 = Cell(self.x, self.y, self.radius, new_generation)
-        cell2.dx = dx2
-        cell2.dy = dy2
+        cell2 = Cell(self.x, self.y, self.radius, new_generation, cd2)
+        cell2.dx, cell2.dy = cell2.cell_data.calc_dxy()
         cell2.moving = True
+        cell2.dx *= speed
+        cell2.dy *= speed
 
         self.has_divided = True
         return [cell1, cell2]

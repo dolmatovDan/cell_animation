@@ -17,4 +17,4 @@ SPREAD_DISTANCE = 80   # pixels
 
 # Recording settings
 RECORD_FRAMES = True
-FRAME_OUTPUT_DIR = "../frames/"
+FRAME_OUTPUT_DIR = "./frames/"
