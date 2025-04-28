@@ -10,22 +10,22 @@ from cell_data import CellData
 
 
 def main():
-    print("Введите 3 координаты a через запятую: ", end="")
-    a = np.array(list(map(float, input().split(","))))
-    print("Введите 3 координаты d через запятую: ", end="")
-    d = np.array(list(map(float, input().split(","))))
-    print("Введите тета1: ", end="")
-    teta1 = float(input())
-    print("Введите тета2: ", end="")
-    teta2 = float(input())
-    print("Введите гамма: ", end="")
-    gamma = float(input())
+    # print("Введите 3 координаты a через запятую: ", end="")
+    # a = np.array(list(map(float, input().split(","))))
+    # print("Введите 3 координаты d через запятую: ", end="")
+    # d = np.array(list(map(float, input().split(","))))
+    # print("Введите тета1: ", end="")
+    # teta1 = float(input())
+    # print("Введите тета2: ", end="")
+    # teta2 = float(input())
+    # print("Введите гамма: ", end="")
+    # gamma = float(input())
 
-    # a = np.array([0, 1, 0])
-    # d = np.array([1.5, 1, 0])
-    # teta1 = 1.
-    # teta2 = 1.5
-    # gamma = 1
+    a = np.array([0, 1, 0])
+    d = np.array([1.5, 1, 0])
+    teta1 = 1.
+    teta2 = 1.5
+    gamma = 1
 
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
